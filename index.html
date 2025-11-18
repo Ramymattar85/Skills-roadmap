@@ -1,670 +1,474 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>خريطة المهارات الرئيسية – Ramy</title>
+  <meta charset="UTF-8">
+  <title>خريطة مهارات Ramy</title>
   <style>
-    :root {
-      --bg: #f5f5f7;
-      --card-bg: #ffffff;
-      --text-main: #111827;
-      --text-muted: #4b5563;
-      --border: #e5e7eb;
-      --accent: #4f46e5;
-      --accent-soft: #eef2ff;
-      --shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
-      --progress-bg: #e5e7eb;
-      --progress-fill: linear-gradient(90deg, #4f46e5, #06b6d4);
-    }
-
-    body.dark {
-      --bg: #0f172a;
-      --card-bg: #020617;
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border: #1e293b;
-      --accent: #22c55e;
-      --accent-soft: #052e16;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      --progress-bg: #111827;
-      --progress-fill: linear-gradient(90deg, #22c55e, #0ea5e9);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
       margin: 0;
       padding: 16px;
-      color: var(--text-main);
-      transition: background 0.25s ease, color 0.25s ease;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f3f4f6;
+      color: #111827;
     }
-
     .container {
-      max-width: 1280px;
-      margin: 0 auto 40px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
     h1 {
-      margin: 0;
-      font-size: 1.3rem;
-    }
-
-    .subtitle {
-      margin: 0 0 16px 0;
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      margin: 0 0 8px;
+      font-size: 1.4rem;
       text-align: center;
     }
-
-    .subtitle span {
-      color: #16a34a;
-      font-weight: 600;
-    }
-
-    .toggle-btn {
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 0.8rem;
-      border: 1px solid var(--border);
-      background: var(--card-bg);
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-    }
-
-    .toggle-btn span {
-      font-size: 0.9rem;
-    }
-
-    .overall-progress-box {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 10px 16px 14px;
-      margin-bottom: 18px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+    .sub {
+      text-align: center;
       font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      color: #6b7280;
+      margin-bottom: 16px;
     }
-
-    .overall-progress-title {
-      font-weight: 600;
+    .overall-box {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 6px 14px rgba(15,23,42,0.08);
+      border: 1px solid #e5e7eb;
+      margin-bottom: 18px;
+      font-size: 0.85rem;
+    }
+    .overall-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 8px;
+      margin-bottom: 4px;
     }
-
-    .overall-sub {
-      color: var(--text-muted);
-      font-size: 0.78rem;
+    .overall-row span:last-child {
+      font-weight: 600;
+      color: #2563eb;
     }
-
-    .progress-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .progress-bar-container {
+    .bar-wrap {
       width: 100%;
-      background: var(--progress-bg);
+      background: #e5e7eb;
       border-radius: 999px;
       overflow: hidden;
       height: 8px;
     }
-
-    .progress-bar {
+    .bar {
       height: 100%;
-      width: 0;
-      background: var(--progress-fill);
-      transition: width 0.25s ease-out;
+      width: 0%;
+      background: linear-gradient(90deg,#2563eb,#22c55e);
+      transition: width .25s ease-out;
     }
-
-    .skills-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
       gap: 14px;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
-
-    .skill-section {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 12px 12px 14px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 10px 12px 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 6px 14px rgba(15,23,42,0.06);
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      max-height: 420px;
+      max-height: 400px;
     }
-
-    .skill-header {
+    .card-head {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 6px;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 4px;
     }
-
-    .skill-title {
-      margin: 0;
+    .card-title {
       font-size: 0.95rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-
     .tag {
       font-size: 0.7rem;
-      background: var(--accent-soft);
-      color: var(--accent);
+      background: #eff6ff;
+      color: #2563eb;
       padding: 2px 6px;
       border-radius: 999px;
     }
-
-    .skill-list {
+    .card-progress-text {
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+    .list {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin: 6px 0 0;
       font-size: 0.82rem;
-      flex: 1;
       overflow-y: auto;
+      flex: 1;
     }
-
-    .skill-list li {
+    .list li {
       display: flex;
       align-items: flex-start;
       gap: 5px;
       margin-bottom: 4px;
-      line-height: 1.35;
+      line-height: 1.3;
     }
-
-    .skill-list input[type="checkbox"] {
+    .list input[type="checkbox"] {
       margin-top: 2px;
       cursor: pointer;
     }
-
-    label {
-      cursor: pointer;
-    }
-
+    label { cursor: pointer; }
     .notes-box {
-      margin-top: 3px;
+      margin-top: 5px;
       display: flex;
       flex-direction: column;
       gap: 3px;
     }
-
     .notes-box label {
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: #6b7280;
     }
-
     .notes-box textarea {
       width: 100%;
-      min-height: 56px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
+      min-height: 52px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
       padding: 5px 7px;
       font-family: inherit;
       font-size: 0.78rem;
       resize: vertical;
       background: #f9fafb;
-      color: #111827;
     }
-
-    body.dark .notes-box textarea {
-      background: #020617;
-      color: #e5e7eb;
+    .soft {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 6px 14px rgba(15,23,42,0.06);
+      padding: 10px 12px 12px;
+      font-size: 0.84rem;
     }
-
-    .timeline-section,
-    .cert-section,
-    .portfolio-section,
-    .soft-section {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 12px 14px 14px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      margin-bottom: 14px;
-      font-size: 0.86rem;
+    .soft h2 {
+      margin: 0 0 6px;
+      font-size: 0.92rem;
     }
-
-    .section-title {
-      margin: 0 0 8px 0;
-      font-size: 0.95rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-title span.small {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .timeline-dates {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .timeline-extra {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .badge-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .badge {
-      border-radius: 999px;
-      padding: 4px 10px;
-      border: 1px solid var(--border);
-      font-size: 0.78rem;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: #f9fafb;
-    }
-
-    body.dark .badge {
-      background: #020617;
-    }
-
-    .badge input {
-      cursor: pointer;
-    }
-
-    .portfolio-list {
-      list-style: none;
-      padding: 0;
-      margin: 6px 0 0 0;
-      font-size: 0.82rem;
-    }
-
-    .portfolio-list li {
-      margin-bottom: 4px;
-      display: flex;
-      align-items: flex-start;
-      gap: 5px;
-    }
-
-    .soft-section h2 {
-      margin: 0 0 6px 0;
-      font-size: 0.95rem;
-    }
-
-    .soft-section ul {
+    .soft ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      font-size: 0.82rem;
     }
-
-    .soft-section li {
+    .soft li {
       display: flex;
       align-items: flex-start;
       gap: 5px;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
-
-    .soft-section input[type="checkbox"] {
-      margin-top: 2px;
-      cursor: pointer;
-    }
-
-    .footer-note {
-      margin-top: 6px;
+    .footer {
+      margin-top: 8px;
       font-size: 0.78rem;
-      color: var(--text-muted);
       text-align: center;
+      color: #6b7280;
     }
-
     @media (max-width: 640px) {
-      body {
-        padding: 10px;
-      }
+      body { padding: 10px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>خريطة المهارات الرئيسية – Ramy</h1>
-      <button id="toggleTheme" class="toggle-btn">
-        <span>🌓</span>
-        <span>تبديل الوضع (فاتح / داكن)</span>
-      </button>
-    </header>
+<div class="container">
+  <h1>خريطة مهارات Ramy 🎯</h1>
+  <p class="sub">
+    علِّم على كل نقطة تخلصها ✅ – التقدم يتحسب تلقائيًا، وكل شيء محفوظ باستخدام
+    <span dir="ltr">localStorage</span>.
+  </p>
 
-    <p class="subtitle">
-      علِّم على كل نقطة تخلصها ✅ – كل شيء محفوظ تلقائيًا باستخدام
-      <span dir="ltr">localStorage</span>.
-    </p>
-
-    <!-- Overall Progress -->
-    <div class="overall-progress-box">
-      <div class="overall-progress-title">
-        <span>نسبة التقدم الإجمالية في الأربع أعمدة الرئيسية</span>
-        <span id="overall-progress-text">0%</span>
-      </div>
-      <div class="overall-sub">إجمالي التقدم = متوسط تقدم Performance + Automation + Analytics + Shopify.</div>
-      <div class="progress-bar-container">
-        <div class="progress-bar" id="overall-progress-bar"></div>
-      </div>
+  <!-- إجمالي التقدم -->
+  <div class="overall-box">
+    <div class="overall-row">
+      <span>نسبة التقدم الإجمالية في الأربع أعمدة الرئيسية</span>
+      <span id="overall-text">0%</span>
     </div>
+    <div class="bar-wrap">
+      <div class="bar" id="overall-bar"></div>
+    </div>
+  </div>
 
-    <!-- Timeline -->
-    <section class="timeline-section">
-      <div class="section-title">
-        <span>⏳ Timeline – من 14/11/2025 إلى 31/12/2025</span>
-        <span class="small" id="timeline-days-left">0 يوم متبقي</span>
+  <!-- الأعمدة -->
+  <div class="grid">
+
+    <!-- Performance -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          Performance Marketing
+          <span class="tag">الإعلانات</span>
+        </div>
+        <span class="card-progress-text" id="perf-text">0%</span>
       </div>
-      <div class="timeline-dates">
-        <span>بداية الخطة: 14 نوفمبر 2025</span>
-        <span>نهاية المرحلة الأولى: 31 ديسمبر 2025</span>
+      <div class="bar-wrap"><div class="bar" id="perf-bar"></div></div>
+      <ul class="list">
+        <li>
+          <input type="checkbox" id="perf-1" data-group="perf">
+          <label for="perf-1">Meta Ads (Testing, Scaling, Retargeting, Broad Strategies)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="perf-2" data-group="perf">
+          <label for="perf-2">Google Ads (Search, Performance Max, Shopping, Remarketing)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="perf-3" data-group="perf">
+          <label for="perf-3">Full-Funnel Design (TOFU → MOFU → BOFU) & Customer Journey</label>
+        </li>
+        <li>
+          <input type="checkbox" id="perf-4" data-group="perf">
+          <label for="perf-4">Offer Strategy & Creative Angles (Static, UGC, Carousel, Motion)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="perf-5" data-group="perf">
+          <label for="perf-5">Campaign Architecture (ABO / CBO – Testing / Scaling / Retargeting)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="perf-6" data-group="perf">
+          <label for="perf-6">Budgeting, Pacing & Forecasting + ROAS / CPA / CPP / AOV Targets</label>
+        </li>
+        <li>
+          <input type="checkbox" id="perf-7" data-group="perf">
+          <label for="perf-7">Insight Generation & Storytelling من بيانات الحملات</label>
+        </li>
+      </ul>
+      <div class="notes-box">
+        <label for="notes-perf">ملاحظات Performance</label>
+        <textarea id="notes-perf" placeholder="اكتب ملخصات، أفكار، أخطاء تعلمت منها..."></textarea>
       </div>
-      <div class="progress-label">
-        <span>تقدمك في Timeline</span>
-        <span id="timeline-progress-text">0%</span>
-      </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar" id="timeline-progress-bar"></div>
-      </div>
-      <div class="timeline-extra" id="timeline-extra-text"></div>
     </section>
 
-    <!-- Skills Grid -->
-    <div class="skills-grid">
-      <!-- Performance -->
-      <section class="skill-section">
-        <div class="skill-header">
-          <h2 class="skill-title">
-            Performance Marketing
-            <span class="tag">الإعلانات</span>
-          </h2>
-          <span id="progress-perf-text" style="font-size:0.8rem;color:var(--text-muted);">0%</span>
+    <!-- Automation -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          Marketing Automation & CRM
+          <span class="tag">Email / WhatsApp / Messenger</span>
         </div>
-        <div class="progress-bar-container">
-          <div class="progress-bar" id="progress-perf"></div>
-        </div>
-        <ul class="skill-list">
-          <li>
-            <input type="checkbox" id="perf-1" data-group="perf" />
-            <label for="perf-1">Meta Ads (Testing, Scaling, Retargeting, Broad Strategies)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-2" data-group="perf" />
-            <label for="perf-2">Google Ads (Search, Performance Max, Shopping, Remarketing)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-3" data-group="perf" />
-            <label for="perf-3">Full-Funnel Design (TOFU → MOFU → BOFU) &amp; Customer Journey</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-4" data-group="perf" />
-            <label for="perf-4">Offer Strategy &amp; Creative Angles (Static, UGC, Carousel, Motion)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-5" data-group="perf" />
-            <label for="perf-5">Funnel Optimization &amp; CRO Basics (Landing Pages &amp; Product Pages)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-6" data-group="perf" />
-            <label for="perf-6">Campaign Architecture (ABO / CBO, Testing / Scaling / Retargeting)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-7" data-group="perf" />
-            <label for="perf-7">Campaign Budgeting, Pacing &amp; Forecasting (Daily / Weekly)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-8" data-group="perf" />
-            <label for="perf-8">ROAS, CPA, CPP, AOV Optimization &amp; KPI Targets</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-9" data-group="perf" />
-            <label for="perf-9">Cross-channel Acquisition Strategy (Meta + Google + Other)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-10" data-group="perf" />
-            <label for="perf-10">Performance Strategy Design &amp; Full-Funnel Planning</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-11" data-group="perf" />
-            <label for="perf-11">Budget Modeling &amp; Revenue Forecasting</label>
-          </li>
-          <li>
-            <input type="checkbox" id="perf-12" data-group="perf" />
-            <label for="perf-12">Insight Generation &amp; Storytelling from Performance Data</label>
-          </li>
-        </ul>
-        <div class="notes-box">
-          <label for="notes-perf">ملاحظات Performance Marketing</label>
-          <textarea id="notes-perf" placeholder="اكتب ملخصات المذاكرة، تطبيقات حقيقية، وأي أفكار للتطوير..."></textarea>
-        </div>
-      </section>
+        <span class="card-progress-text" id="auto-text">0%</span>
+      </div>
+      <div class="bar-wrap"><div class="bar" id="auto-bar"></div></div>
+      <ul class="list">
+        <li>
+          <input type="checkbox" id="auto-1" data-group="auto">
+          <label for="auto-1">Shopify Customer Events (Customer, Order, Checkout, Tags)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="auto-2" data-group="auto">
+          <label for="auto-2">Email Automation (Brevo / Klaviyo – Welcome, Post-Purchase, Reactivation)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="auto-3" data-group="auto">
+          <label for="auto-3">WhatsApp Automation (WATI / Cloud API – Flows & Templates)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="auto-4" data-group="auto">
+          <label for="auto-4">ManyChat Messenger Flows + Comment Growth Tools</label>
+        </li>
+        <li>
+          <input type="checkbox" id="auto-5" data-group="auto">
+          <label for="auto-5">Abandoned Cart & Checkout Recovery (Email + WhatsApp)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="auto-6" data-group="auto">
+          <label for="auto-6">COD Confirmation Systems (WhatsApp / SMS)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="auto-7" data-group="auto">
+          <label for="auto-7">Lifecycle Journeys (30 / 60 / 90 Days) & Retention Flows</label>
+        </li>
+        <li>
+          <input type="checkbox" id="auto-8" data-group="auto">
+          <label for="auto-8">Integration Basics (Webhooks, API GET/POST, Zapier / Make / n8n)</label>
+        </li>
+      </ul>
+      <div class="notes-box">
+        <label for="notes-auto">ملاحظات Automation</label>
+        <textarea id="notes-auto" placeholder="خطط Flows، أفكار Segmentation، Systems حابب تبنيها..."></textarea>
+      </div>
+    </section>
 
-      <!-- Tracking & Analytics -->
-      <section class="skill-section">
-        <div class="skill-header">
-          <h2 class="skill-title">
-            Tracking &amp; Analytics
-            <span class="tag">GA4 / GTM / UTM / Dashboards</span>
-          </h2>
-          <span id="progress-track-text" style="font-size:0.8rem;color:var(--text-muted);">0%</span>
+    <!-- Tracking -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          Tracking & Analytics
+          <span class="tag">GA4 / GTM / UTM / Dashboards</span>
         </div>
-        <div class="progress-bar-container">
-          <div class="progress-bar" id="progress-track"></div>
-        </div>
-        <ul class="skill-list">
-          <li>
-            <input type="checkbox" id="track-1" data-group="track" />
-            <label for="track-1">GA4 Advanced Ecommerce Tracking (Events, Conversions, Funnels)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-2" data-group="track" />
-            <label for="track-2">GTM – Tags, Triggers, Variables &amp; Data Layer Events</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-3" data-group="track" />
-            <label for="track-3">UTM Framework Strategy &amp; Full Source Tracking (Meta / Google / TikTok)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-4" data-group="track" />
-            <label for="track-4">Looker Studio Dashboard Building (Acquisition, Ecommerce, ROAS)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-5" data-group="track" />
-            <label for="track-5">Event Tracking &amp; Custom Conversions Across Channels</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-6" data-group="track" />
-            <label for="track-6">Funnel Analysis &amp; User Behavior Analysis (Ads → ATC → Checkout → Purchase)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-7" data-group="track" />
-            <label for="track-7">Cohort Analysis &amp; Segmentation Based on Behavior &amp; Revenue</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-8" data-group="track" />
-            <label for="track-8">Attribution Models (Last Click, Data-Driven, Incrementality Thinking)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-9" data-group="track" />
-            <label for="track-9">KPI Modeling &amp; Performance Diagnostics (Ads, Website, Retention)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-10" data-group="track" />
-            <label for="track-10">Google Sheets for Analytics (Models, Dashboards, Cohorts)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="track-11" data-group="track" />
-            <label for="track-11">Basic Power BI – Data Modeling &amp; Visualization (Phase Jan–Feb 2026)</label>
-          </li>
-        </ul>
-        <div class="notes-box">
-          <label for="notes-track">ملاحظات Tracking &amp; Analytics</label>
-          <textarea id="notes-track" placeholder="اكتب نقاط من GA4 / GTM / UTM / Looker Studio، وأسئلة مهمة للمراجعة..."></textarea>
-        </div>
-      </section>
+        <span class="card-progress-text" id="track-text">0%</span>
+      </div>
+      <div class="bar-wrap"><div class="bar" id="track-bar"></div></div>
+      <ul class="list">
+        <li>
+          <input type="checkbox" id="track-1" data-group="track">
+          <label for="track-1">UTM Framework كامل + Sheet جاهزة</label>
+        </li>
+        <li>
+          <input type="checkbox" id="track-2" data-group="track">
+          <label for="track-2">GTM – Tags / Triggers / Variables + Data Layer Events</label>
+        </li>
+        <li>
+          <input type="checkbox" id="track-3" data-group="track">
+          <label for="track-3">GA4 Ecommerce Events (View, ATC, Checkout, Purchase)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="track-4" data-group="track">
+          <label for="track-4">Funnel & Cohort Reports (Ads → ATC → Purchase)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="track-5" data-group="track">
+          <label for="track-5">Looker Studio Dashboards (Acquisition + Ecommerce + ROAS)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="track-6" data-group="track">
+          <label for="track-6">Attribution Thinking + KPI Modeling</label>
+        </li>
+        <li>
+          <input type="checkbox" id="track-7" data-group="track">
+          <label for="track-7">Google Sheets Models (Dashboards / Cohorts / Blended ROAS)</label>
+        </li>
+      </ul>
+      <div class="notes-box">
+        <label for="notes-track">ملاحظات Tracking</label>
+        <textarea id="notes-track" placeholder="نقط من GA4 / GTM / UTM، أفكار Dashboards، أى مشاكل ظهرت..."></textarea>
+      </div>
+    </section>
 
-      <!-- Automation -->
-      <section class="skill-section">
-        <div class="skill-header">
-          <h2 class="skill-title">
-            Marketing Automation &amp; CRM
-            <span class="tag">Email / WhatsApp / Messenger</span>
-          </h2>
-          <span id="progress-auto-text" style="font-size:0.8rem;color:var(--text-muted);">0%</span>
+    <!-- Shopify Performance -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          Shopify Performance & Intelligence
+          <span class="tag">المتجر والتحليل</span>
         </div>
-        <div class="progress-bar-container">
-          <div class="progress-bar" id="progress-auto"></div>
-        </div>
-        <ul class="skill-list">
-          <li>
-            <input type="checkbox" id="auto-1" data-group="auto" />
-            <label for="auto-1">Shopify Customer Events Integration (Customer, Order, Checkout, Tags)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-2" data-group="auto" />
-            <label for="auto-2">Email Automation with Brevo / Klaviyo (Welcome, Post-Purchase, Reactivation)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-3" data-group="auto" />
-            <label for="auto-3">WhatsApp Automation (WATI / WhatsApp Cloud API – Flows &amp; Templates)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-4" data-group="auto" />
-            <label for="auto-4">Messenger Automation via ManyChat (Flows, Comment Growth Tools)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-5" data-group="auto" />
-            <label for="auto-5">Abandoned Cart &amp; Checkout Recovery Systems (Email + WhatsApp)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-6" data-group="auto" />
-            <label for="auto-6">COD Confirmation Automation (WhatsApp / SMS + Status Updates)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-7" data-group="auto" />
-            <label for="auto-7">Lifecycle Journeys (30 / 60 / 90 Days) &amp; Customer Retention Flows</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-8" data-group="auto" />
-            <label for="auto-8">Post-Purchase &amp; Upsell / Cross-sell Automations</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-9" data-group="auto" />
-            <label for="auto-9">Lead Nurture &amp; Reactivation Journeys (Cold, Warm, Dormant)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-10" data-group="auto" />
-            <label for="auto-10">Customer Segmentation (RFM, AOV, Purchase Frequency, Intent)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-11" data-group="auto" />
-            <label for="auto-11">Webhooks &amp; API Basics (GET/POST) for Automation Flows</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-12" data-group="auto" />
-            <label for="auto-12">Integration Tools – Zapier / Make / n8n (Basic Flow Building)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="auto-13" data-group="auto" />
-            <label for="auto-13">JSON Structures &amp; Mapping Data Between Apps</label>
-          </li>
-        </ul>
-        <div class="notes-box">
-          <label for="notes-auto">ملاحظات Marketing Automation &amp; CRM</label>
-          <textarea id="notes-auto" placeholder="أفكار للـ Flows، التجارب اللي نفذتها، وتحسينات قادمة..."></textarea>
-        </div>
-      </section>
+        <span class="card-progress-text" id="shop-text">0%</span>
+      </div>
+      <div class="bar-wrap"><div class="bar" id="shop-bar"></div></div>
+      <ul class="list">
+        <li>
+          <input type="checkbox" id="shop-1" data-group="shop">
+          <label for="shop-1">تحليل مسار العميل داخل Shopify (View → ATC → Checkout → Purchase)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="shop-2" data-group="shop">
+          <label for="shop-2">Product & Category Performance (Winners vs Underperformers)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="shop-3" data-group="shop">
+          <label for="shop-3">Shipping Performance (Delivery Rate حسب المحافظة / شركة الشحن)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="shop-4" data-group="shop">
+          <label for="shop-4">COD Handling & Drop-off Reduction</label>
+        </li>
+        <li>
+          <input type="checkbox" id="shop-5" data-group="shop">
+          <label for="shop-5">Return Reasons & Failed Delivery Mapping</label>
+        </li>
+        <li>
+          <input type="checkbox" id="shop-6" data-group="shop">
+          <label for="shop-6">AOV & LTV Modeling + Repeat Purchase Analysis</label>
+        </li>
+        <li>
+          <input type="checkbox" id="shop-7" data-group="shop">
+          <label for="shop-7">Customer Feedback / NPS Analysis</label>
+        </li>
+      </ul>
+      <div class="notes-box">
+        <label for="notes-shop">ملاحظات Shopify</label>
+        <textarea id="notes-shop" placeholder="أفكار لتقارير الشحن، المحافظات، الReturns، Dashboards..."></textarea>
+      </div>
+    </section>
+  </div>
 
-      <!-- Shopify Performance -->
-      <section class="skill-section">
-        <div class="skill-header">
-          <h2 class="skill-title">
-            Shopify Performance &amp; E-Commerce Intelligence
-            <span class="tag">المتجر والأرقام</span>
-          </h2>
-          <span id="progress-shop-text" style="font-size:0.8rem;color:var(--text-muted);">0%</span>
-        </div>
-        <div class="progress-bar-container">
-          <div class="progress-bar" id="progress-shop"></div>
-        </div>
-        <ul class="skill-list">
-          <li>
-            <input type="checkbox" id="shop-1" data-group="shop" />
-            <label for="shop-1">Shopify Insights &amp; Customer Behavior Analysis (View → ATC → Checkout → Purchase)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-2" data-group="shop" />
-            <label for="shop-2">Product Performance &amp; Category Analysis (Winners vs Underperformers)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-3" data-group="shop" />
-            <label for="shop-3">Shipping Performance Analytics (Delivery Rate by Region / Courier)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-4" data-group="shop" />
-            <label for="shop-4">COD Handling &amp; Drop-off Reduction Strategies</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-5" data-group="shop" />
-            <label for="shop-5">Return Reasons &amp; Failed Delivery Mapping (Governorates, Products, Couriers)</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-6" data-group="shop" />
-            <label for="shop-6">Customer Satisfaction &amp; NPS Analysis</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-7" data-group="shop" />
-            <label for="shop-7">AOV &amp; LTV Modeling &amp; Repeat Purchase Behavior</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-8" data-group="shop" />
-            <label for="shop-8">Retention Strategy Design &amp; VIP / High-Value Segments</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-9" data-group="shop" />
-            <label for="shop-9">Cohort-based Revenue &amp; Buyer Frequency Analysis</label>
-          </li>
-          <li>
-            <input type="checkbox" id="shop-10" data-group="shop" />
-            <label for="shop-10">Shopify Data Extraction &amp; Segmentation for Ads &amp; Automation</label>
-          </li>
-        </ul>
-        <div class="notes-box">
-          <label for="notes-shop">ملاحظات Shopify Performance &amp; E-Commerce Intelligence</label>
-          <textarea id="notes-shop" placeholder="اكتب تح
+  <!-- Soft Skills -->
+  <section class="soft">
+    <h2>Soft & Leadership Skills عبر كل الأعمدة 🌿</h2>
+    <ul>
+      <li><input type="checkbox" id="soft-1" data-group="soft"><label for="soft-1">Strategic Thinking & Long-Term Planning</label></li>
+      <li><input type="checkbox" id="soft-2" data-group="soft"><label for="soft-2">Analytical Problem Solving</label></li>
+      <li><input type="checkbox" id="soft-3" data-group="soft"><label for="soft-3">Communication & Clear Reporting</label></li>
+      <li><input type="checkbox" id="soft-4" data-group="soft"><label for="soft-4">Leadership & Team Direction</label></li>
+      <li><input type="checkbox" id="soft-5" data-group="soft"><label for="soft-5">Project Ownership & High Accountability</label></li>
+      <li><input type="checkbox" id="soft-6" data-group="soft"><label for="soft-6">Cross-functional Collaboration (Marketing + Sales + Ops)</label></li>
+    </ul>
+  </section>
+
+  <p class="footer">
+    تقدر تعدل الملف، تزود نقاط جديدة، أو تغيره مع تطور مستواك 💪
+  </p>
+</div>
+
+<script>
+(function () {
+  // حفظ واسترجاع الـ checkboxes
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  for (var i = 0; i < checkboxes.length; i++) {
+    (function (cb) {
+      var key = "ramy-skill-" + cb.id;
+      var saved = localStorage.getItem(key);
+      if (saved === "true") cb.checked = true;
+      cb.onchange = function () {
+        localStorage.setItem(key, cb.checked ? "true" : "false");
+        updateAllProgress();
+      };
+    })(checkboxes[i]);
+  }
+  // حفظ الملاحظات
+  var notes = document.querySelectorAll("textarea[id^='notes-']");
+  for (var j = 0; j < notes.length; j++) {
+    (function (ta) {
+      var key = "ramy-note-" + ta.id;
+      var saved = localStorage.getItem(key);
+      if (saved !== null) ta.value = saved;
+      ta.oninput = function () {
+        localStorage.setItem(key, ta.value);
+      };
+    })(notes[j]);
+  }
+
+  function groupProgress(group) {
+    var groupCbs = document.querySelectorAll('input[type="checkbox"][data-group="' + group + '"]');
+    var total = groupCbs.length;
+    if (total === 0) return 0;
+    var checked = 0;
+    for (var i = 0; i < groupCbs.length; i++) {
+      if (groupCbs[i].checked) checked++;
+    }
+    return Math.round(checked * 100 / total);
+  }
+
+  function setBar(group, barId, textId) {
+    var p = groupProgress(group);
+    var bar = document.getElementById(barId);
+    var txt = document.getElementById(textId);
+    if (bar) bar.style.width = p + "%";
+    if (txt) txt.innerHTML = p + "%";
+    return p;
+  }
+
+  function updateAllProgress() {
+    var pPerf  = setBar("perf",  "perf-bar",  "perf-text");
+    var pAuto  = setBar("auto",  "auto-bar",  "auto-text");
+    var pTrack = setBar("track", "track-bar", "track-text");
+    var pShop  = setBar("shop",  "shop-bar",  "shop-text");
+    // إجمالي التقدم = متوسط الأعمدة الأربعة
+    var sum = pPerf + pAuto + pTrack + pShop;
+    var overall = Math.round(sum / 4);
+    var overallBar  = document.getElementById("overall-bar");
+    var overallText = document.getElementById("overall-text");
+    if (overallBar) overallBar.style.width = overall + "%";
+    if (overallText) overallText.innerHTML = overall + "%";
+  }
+
+  updateAllProgress();
+})();
+</script>
+</body>
+</html>
