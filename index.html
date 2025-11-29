@@ -174,6 +174,58 @@
     @media (max-width: 640px) {
       body { padding: 10px; }
     }
+    /* ========== PRINT FRIENDLY VERSION ========== */
+@media print {
+
+  body {
+    background: #ffffff !important;
+    color: #000 !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* إزالة الشادو لجعل الطباعة أنضف */
+  .card, 
+  .overall-box, 
+  .soft {
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+    background: #fff !important;
+  }
+
+  /* progress bars أثناء الطباعة: لو مش عايزها اطفيها */
+  .bar-wrap {
+    display: none !important; 
+  }
+
+  /* خانة الملاحظات */
+  textarea {
+    height: 120px !important;
+    border: 1px solid #000 !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    color: #000 !important;
+  }
+
+  /* إخفاء عناصر غير مهمة */
+  #toggleTheme,
+  .footer,
+  .theme-btn,
+  .github-link {
+    display: none !important;
+  }
+
+  /* جعل الصفحة كلها بدون هوامش */
+  @page {
+    margin: 10mm;
+  }
+}
+
   </style>
 </head>
 <body>
